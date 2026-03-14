@@ -25,3 +25,8 @@ async fn main() -> io::Result<()> {
         });
     }
 }
+
+//If a variable is used before and after .await,
+// Rust must store it inside the future's state machine.
+// stack arrays would make each task very large ->[1024 bytes buffer]
+// using Vec keeps the task small and scalable. ->Vec { ptr, len, cap }
