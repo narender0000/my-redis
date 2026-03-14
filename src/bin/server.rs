@@ -61,3 +61,9 @@ async fn process(socket: TcpStream, db: Db) {
 // tokio::sync::Mutex (asynchronous mutex)
 // When waiting for the lock, the task yields control to the async executor instead of blocking the thread.
 // Designed for cases where the lock must be held across .await calls.
+
+// If contention on a synchronous mutex becomes a problem, the best fix is rarely to switch to the Tokio mutex.
+// Instead, options to consider are to:
+// Let a dedicated task manage state and use message passing.
+// Shard the mutex
+// Restructure the code to avoid the mutex.
